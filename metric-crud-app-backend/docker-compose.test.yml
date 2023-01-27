@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    restart: always
+    ports:
+      - '8080:8080'
+    volumes:
+     - .:/app
+    depends_on:
+      - postgresql
+  postgresql:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: justauser 
+      POSTGRES_PASSWORD: somerandompassword 
+      POSTGRES_DB: dev_database
+    ports:
+      - '5432:5432'
