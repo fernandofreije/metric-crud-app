@@ -10,7 +10,7 @@
     },
     "servers": [
         {
-            "url": "https://metric-crud-app-backend.vercel.app/"
+            "url": "https://metric-crud-app-backend.onrender.com/"
         }
     ],
     "paths": {

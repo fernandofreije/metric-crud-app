@@ -7,6 +7,9 @@ This is a the backend the Metric CRUD app challenge
 
 **Server:** Node, Express, Docker, Prisma
 
+## Documentation and url of deploy
+
+https://metric-crud-app-backend.onrender.com/
 
 ## Run Locally
 
