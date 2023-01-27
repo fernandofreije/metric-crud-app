@@ -105,5 +105,8 @@ but to run integration tests docker is needed
   npm run docker:test:all
 ```
 
+## Some TODO stuff
+
+- Add CI to run tests and deploy conditionally
 
 
