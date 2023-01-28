@@ -1,4 +1,4 @@
-import { type AllowedSchema } from 'express-json-validator-middleware'
+import { type AllowedSchema } from 'express-json-validator-middleware';
 
 export const metricSchema: AllowedSchema = {
   type: 'object',
@@ -18,4 +18,4 @@ export const metricSchema: AllowedSchema = {
       type: 'string'
     }
   }
-}
+};

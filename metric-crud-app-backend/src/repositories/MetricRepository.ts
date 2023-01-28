@@ -1,4 +1,4 @@
-import { type FactorialMetric } from '@prisma/client'
+import { type FactorialMetric } from '@prisma/client';
 
 export interface MetricRepository {
   create: ({ name, value }: Partial<FactorialMetric>) => Promise<FactorialMetric>

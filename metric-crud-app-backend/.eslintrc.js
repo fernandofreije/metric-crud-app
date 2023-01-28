@@ -13,6 +13,8 @@ module.exports = {
     project: 'tsconfig.json'
   },
   rules: {
+    "semi": [1, "always"],
+    "@typescript-eslint/semi": [1, "always"],
     '@typescript-eslint/no-misused-promises': [
       'error',
       {
