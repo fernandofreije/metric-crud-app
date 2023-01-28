@@ -8,9 +8,13 @@ import MetricCardList from '../../components/MetricCardList'
 import { useMetrics } from '../../hooks/useMetrics'
 import { Metric } from '../../models/Metric'
 import { mq } from '../../util/mediaQuery'
+import { GetServerSideProps } from 'next'
+import { MetricAverages } from '../../models/MetricAverages'
+import { HttpMetricRepository } from '../../repositories/HttpMetricRepository'
+import { BackendHttpDriver } from '../../repositories/drivers/BackendHttpDriver'
 
 
-export default function MetricListPage() {
+export default function MetricListPage({averages}: {averages: MetricAverages}) {
 
   const { data: metrics, loading, error } = useMetrics();
 
@@ -34,7 +38,7 @@ export default function MetricListPage() {
       <div css={mq({ display: 'flex', flexDirection: ['column', 'row-reverse'], width: '100%', gap: '10rem' })}>
         <div css={mq({ flex: 1 })}>
           <h1 css={{ margin: '0 1rem' }}>Averages</h1>
-          <AverageBoxList />
+          <AverageBoxList averages={averages}/>
         </div>
         <div css={mq({ flex: [1, 2] })}>
           <h1 css={{ margin: '0 1rem' }}>Timeline</h1>
@@ -46,4 +50,14 @@ export default function MetricListPage() {
     </Layout >
 
   )
+}
+
+
+export const getServerSideProps: GetServerSideProps<{ averages: MetricAverages }> = async (_) => {
+  const averages = await new HttpMetricRepository(new BackendHttpDriver()).getAverages();
+  return {
+    props: {
+      averages
+    },
+  }
 }

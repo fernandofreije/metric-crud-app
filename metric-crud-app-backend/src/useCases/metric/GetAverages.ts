@@ -10,9 +10,9 @@ interface AveragesReturnType {
 };
 
 export class GetAverages implements UseCase<AveragesReturnType> {
-  public constructor (private readonly metricRepository: MetricRepository = new MetricPrismaRepository()) { }
+  public constructor(private readonly metricRepository: MetricRepository = new MetricPrismaRepository()) { }
 
-  public async perform (): Promise<UseCaseResponse<AveragesReturnType>> {
+  public async perform(): Promise<UseCaseResponse<AveragesReturnType>> {
     const oneMinuteAgoTime = DateTime.now().minus({ minute: 1 });
     const oneHourAgoTime = DateTime.now().minus({ hour: 1 });
     const oneDayAgoTime = DateTime.now().minus({ day: 1 });

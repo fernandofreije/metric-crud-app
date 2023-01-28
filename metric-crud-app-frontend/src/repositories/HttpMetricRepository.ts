@@ -1,4 +1,5 @@
 import { Metric } from "../models/Metric";
+import { MetricAverages } from "../models/MetricAverages";
 import { ConsoleLogger } from "../util/logger/ConsoleLogger";
 import { Logger } from "../util/logger/Logger";
 import { HttpDriver } from "./drivers/HttpDriver";
@@ -43,5 +44,18 @@ export class HttpMetricRepository implements MetricRepository {
       throw new Error(`There was an error trying to create the metric`);
     }
   }
+
+  public getAverages: MetricRepository['getAverages'] = async () => {
+    try {
+      const averages = await this.driver.get<MetricAverages>(`/metric/averages`);
+
+      return averages;
+    } catch (e) {
+      this.logger.error(e);
+
+      throw new Error(`There was an error trying to get the averages`);
+    }
+  }
+
 }
 

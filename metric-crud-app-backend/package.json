@@ -4,6 +4,7 @@
   "description": "Small rest api backend for metric-crud-app example",
   "main": "src/index.ts",
   "scripts": {
+    "typecheck": "tsc --noEmit",
     "build": "tsc --project tsconfig.json",
     "lint": "eslint .",
     "prestart": "npm run build",
