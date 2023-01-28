@@ -1,4 +1,3 @@
 export interface Logger {
-    error: (...data: unknown[]) => void;
-  }
-  
+  error: (...data: unknown[]) => void;
+}
