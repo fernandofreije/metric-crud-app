@@ -110,6 +110,30 @@
                     }
                 }
             }
+        },
+        "/metric/averages": {
+            "get": {
+                "tags": [
+                    "metric"
+                ],
+                "summary": "Find averages and total of metrics",
+                "description": "Find averages and total of metrics",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MetricAverage"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -135,6 +159,50 @@
                     },
                     "timestamp": {
                         "type": "string"
+                    }
+                },
+                "xml": {
+                    "name": "metric"
+                }
+            },
+            "MetricAverage": {
+                "required": [
+                    "name",
+                    "value"
+                ],
+                "type": "object",
+                "properties": {
+                    "oneMinuteAgo": {
+                        "type": "object",
+                        "properties": {
+                            "value":{
+                                "type": "number"
+                            },
+                            "total":{
+                                "type": "number"
+                            }
+                        }
+                    },
+                    "oneHourAgo": {
+                        "type": "object",
+                        "properties": {
+                            "value":{
+                                "type": "number"
+                            },
+                            "total":{
+                                "type": "number"
+                            }
+                        }
+                    },"oneDayAgo": {
+                        "type": "object",
+                        "properties": {
+                            "value":{
+                                "type": "number"
+                            },
+                            "total":{
+                                "type": "number"
+                            }
+                        }
                     }
                 },
                 "xml": {

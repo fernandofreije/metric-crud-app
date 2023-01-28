@@ -4,4 +4,5 @@ export class FakeMetricRepository implements MetricRepository {
   public create = jest.fn();
   public getAll = jest.fn();
   public get = jest.fn();
+  public getAverage = jest.fn();
 }

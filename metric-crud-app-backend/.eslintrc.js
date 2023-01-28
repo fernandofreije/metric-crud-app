@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     "semi": [1, "always"],
     "@typescript-eslint/semi": [1, "always"],
+    "@typescript-eslint/space-before-function-paren": "off",
     '@typescript-eslint/no-misused-promises': [
       'error',
       {

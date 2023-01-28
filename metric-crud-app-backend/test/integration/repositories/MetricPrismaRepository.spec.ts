@@ -120,4 +120,18 @@ describe('MetricPrismaRepository', () => {
       expect(result).toEqual(expect.objectContaining({ name: 'somemetric', value: 1 }));
     });
   });
+
+  describe('#getAverage', () => {
+    it('returns average and total in the established time frame', async () => {
+      const subject = new MetricPrismaRepository();
+
+      const tenMinutesAgo = DateTime.now().minus({ minute: 10 });
+
+      await prisma.factorialMetric.create({ data: { name: 'metric', value: 10, createdAt: DateTime.now().toJSDate() } });
+      await prisma.factorialMetric.create({ data: { name: 'otherMetric', value: 20, createdAt: DateTime.now().minus({ minute: 5 }).toJSDate() } });
+      await prisma.factorialMetric.create({ data: { name: 'otherMetric', value: 2000, createdAt: DateTime.now().minus({ minute: 15 }).toJSDate() } });
+
+      expect(await subject.getAverage({ since: tenMinutesAgo })).toEqual({ value: 15, total: 2 });
+    });
+  });
 });

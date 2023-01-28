@@ -102,5 +102,20 @@ describe('MetricRoutes', () => {
         expect(result.body).toEqual(expect.objectContaining({ name: 'metric1', value: 1 }));
       });
     });
+
+    describe('GET /metric/averages', () => {
+      it('returns 200 and the metric if a metric with that id exists', async () => {
+        await prisma.factorialMetric.create({ data: { name: 'metric', value: 10, createdAt: DateTime.now().toJSDate() } });
+        await prisma.factorialMetric.create({ data: { name: 'otherMetric', value: 20, createdAt: DateTime.now().minus({ seconds: 30 }).toJSDate() } });
+        await prisma.factorialMetric.create({ data: { name: 'otherMetric', value: 40, createdAt: DateTime.now().minus({ minute: 30 }).toJSDate() } });
+        await prisma.factorialMetric.create({ data: { name: 'otherMetric', value: 80, createdAt: DateTime.now().minus({ minute: 40 }).toJSDate() } });
+        await prisma.factorialMetric.create({ data: { name: 'otherMetric', value: 20, createdAt: DateTime.now().minus({ minute: 65 }).toJSDate() } });
+        await prisma.factorialMetric.create({ data: { name: 'otherMetric', value: 40, createdAt: DateTime.now().minus({ hour: 2 }).toJSDate() } });
+        await prisma.factorialMetric.create({ data: { name: 'otherMetric', value: 2000, createdAt: DateTime.now().minus({ day: 2 }).toJSDate() } });
+
+        const result = await request.get('/metric/averages').expect(200);
+        expect(result.body).toEqual(expect.objectContaining({ oneMinuteAgo: { value: 15, total: 2 }, oneHourAgo: { value: 37.5, total: 4 }, oneDayAgo: { value: 35, total: 6 } }));
+      });
+    });
   });
 });
