@@ -10,7 +10,7 @@
     "start": "node dist/src/index.js",
     "docker:build": "docker-compose build && docker-compose run --rm api npx prisma migrate dev",
     "docker:start": "docker-compose up",
-    "dev": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
     "dev:watch": "nodemon -L src/index.ts",
     "docker:dev": "docker-compose -f docker-compose.dev.yml up",
     "docker:dev:build": "docker-compose -f docker-compose.dev.yml build  && docker-compose -f docker-compose.dev.yml run --rm api npx prisma migrate dev",

@@ -20,6 +20,8 @@ app.use(
 
 app.use((error: Error, req: Request, response: Response, next: NextFunction) => {
   if (error instanceof ValidationError) {
+    console.log(`Body: ${JSON.stringify(req.body)}`);
+    console.log(`ValidationErrors: ${JSON.stringify(error.validationErrors)}`);
     response.status(400).send(error.validationErrors);
     next();
   } else {
