@@ -1,5 +1,7 @@
 import { type FactorialMetric } from '@prisma/client';
+import { Console } from 'console';
 import { type Request, type Response } from 'express';
+import { type SortType } from '../models/SortType';
 
 import { MetricPrismaRepository } from '../repositories/MetricPrismaRepository';
 import { type MetricRepository } from '../repositories/MetricRepository';
@@ -22,8 +24,11 @@ export class MetricController {
     return res.json(data).end();
   }
 
-  public async getAll (_: Request, res: Response): Promise<Response<FactorialMetric[]>> {
-    const { data, error } = await new GetAllMetrics(this.metricRepository).perform();
+  public async getAll (req: Request, res: Response): Promise<Response<FactorialMetric[]>> {
+    const { sort } = req.query;
+    console.log(sort);
+    console.log(req.query);
+    const { data, error } = await new GetAllMetrics(this.metricRepository).perform({ sort: sort as SortType });
 
     if (error != null) {
       return res.status(error.code).send(error.message).end();

@@ -9,6 +9,6 @@ export interface UseCaseResponse<T = any> {
   error?: UseCaseError
 }
 
-export interface UseCase<Options = object> {
-  perform: (options: Options) => Promise<UseCaseResponse>
+export interface UseCase<T = any> {
+  perform: (options: any) => Promise<UseCaseResponse<T>>
 }

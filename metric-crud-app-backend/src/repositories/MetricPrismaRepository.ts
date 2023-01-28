@@ -1,6 +1,7 @@
 import { type FactorialMetric } from '@prisma/client';
 import { prisma } from '../db/db';
 import { UnprocessableEntityError } from '../errors/UnprocessableEntityError';
+import { SortType } from '../models/SortType';
 import { type MetricRepository } from './MetricRepository';
 
 export class MetricPrismaRepository implements MetricRepository {
@@ -19,15 +20,15 @@ export class MetricPrismaRepository implements MetricRepository {
     return metric;
   }
 
-  public async getAll (): Promise<FactorialMetric[]> {
-    const metrics = await prisma.factorialMetric.findMany();
+  public async getAll ({ sort }: { sort?: SortType } = {}): Promise<FactorialMetric[]> {
+    if (sort !== undefined && sort === SortType.timeline) {
+      return await prisma.factorialMetric.findMany({ orderBy: { createdAt: 'desc' } });
+    }
 
-    return metrics;
+    return await prisma.factorialMetric.findMany();
   }
 
   public async get ({ id }: Pick<FactorialMetric, 'id'>): Promise<FactorialMetric | null> {
-    const metric = await prisma.factorialMetric.findUnique({ where: { id } });
-
-    return metric;
+    return await prisma.factorialMetric.findUnique({ where: { id } }); ;
   }
 }

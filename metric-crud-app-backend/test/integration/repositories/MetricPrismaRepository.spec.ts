@@ -1,4 +1,6 @@
+import { DateTime } from 'luxon';
 import { prisma } from '../../../src/db/db';
+import { SortType } from '../../../src/models/SortType';
 import { MetricPrismaRepository } from '../../../src/repositories/MetricPrismaRepository';
 
 describe('MetricPrismaRepository', () => {
@@ -42,6 +44,63 @@ describe('MetricPrismaRepository', () => {
 
       expect(result.length).toEqual(2);
       expect(result).toEqual(expect.arrayContaining([expect.objectContaining({ name: 'somemetric', value: 1 }), expect.objectContaining({ name: 'othermetric', value: 2 })]));
+    });
+
+    it('returns metrics in default order if non sort method is passed', async () => {
+      const subject = new MetricPrismaRepository();
+
+      const olderTime = DateTime.now().minus({ hour: 2 }).toJSDate();
+      const midTime = DateTime.now().minus({ hour: 1 }).toJSDate();
+      const newerTime = DateTime.now().toJSDate();
+      await prisma.factorialMetric.create({ data: { name: 'midMetric', value: 1, createdAt: midTime } });
+      await prisma.factorialMetric.create({ data: { name: 'olderMetric', value: 2, createdAt: olderTime } });
+      await prisma.factorialMetric.create({ data: { name: 'newerMetric', value: 2, createdAt: newerTime } });
+
+      const result = await subject.getAll();
+
+      expect(result).toEqual([
+        expect.objectContaining({ name: 'midMetric' }),
+        expect.objectContaining({ name: 'olderMetric' }),
+        expect.objectContaining({ name: 'newerMetric' })
+      ]);
+    });
+
+    it('returns metrics in default order if standard method passed', async () => {
+      const subject = new MetricPrismaRepository();
+
+      const olderTime = DateTime.now().minus({ hour: 2 }).toJSDate();
+      const midTime = DateTime.now().minus({ hour: 1 }).toJSDate();
+      const newerTime = DateTime.now().toJSDate();
+      await prisma.factorialMetric.create({ data: { name: 'midMetric', value: 1, createdAt: midTime } });
+      await prisma.factorialMetric.create({ data: { name: 'olderMetric', value: 2, createdAt: olderTime } });
+      await prisma.factorialMetric.create({ data: { name: 'newerMetric', value: 2, createdAt: newerTime } }); ;
+
+      const result = await subject.getAll({ sort: SortType.standard });
+
+      expect(result).toEqual([
+        expect.objectContaining({ name: 'midMetric' }),
+        expect.objectContaining({ name: 'olderMetric' }),
+        expect.objectContaining({ name: 'newerMetric' })
+      ]);
+    });
+
+    it('returns metrics ordered by createdAt if timeline sort method was passed', async () => {
+      const subject = new MetricPrismaRepository();
+
+      const olderTime = DateTime.now().minus({ hour: 2 }).toJSDate();
+      const midTime = DateTime.now().minus({ hour: 1 }).toJSDate();
+      const newerTime = DateTime.now().toJSDate();
+      await prisma.factorialMetric.create({ data: { name: 'midMetric', value: 1, createdAt: midTime } });
+      await prisma.factorialMetric.create({ data: { name: 'olderMetric', value: 2, createdAt: olderTime } });
+      await prisma.factorialMetric.create({ data: { name: 'newerMetric', value: 2, createdAt: newerTime } });
+
+      const result = await subject.getAll({ sort: SortType.timeline });
+
+      expect(result).toEqual([
+        expect.objectContaining({ name: 'newerMetric' }),
+        expect.objectContaining({ name: 'midMetric' }),
+        expect.objectContaining({ name: 'olderMetric' })
+      ]);
     });
   });
 

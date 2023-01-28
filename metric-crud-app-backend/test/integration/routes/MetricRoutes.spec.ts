@@ -2,6 +2,7 @@ import { prisma } from '../../../src/db/db';
 import supertest, { type SuperTest } from 'supertest';
 import app from '../../../src/app';
 import { type Server } from 'http';
+import { DateTime } from 'luxon';
 
 describe('MetricRoutes', () => {
   let server: Server;
@@ -52,14 +53,38 @@ describe('MetricRoutes', () => {
         expect(result.body).toEqual([]);
       });
 
-      it('returns all existing metrics empty if there is no metrics', async () => {
-        await prisma.factorialMetric.create({ data: { name: 'metric1', value: 1 } });
-        await prisma.factorialMetric.create({ data: { name: 'metric2', value: 2 } });
+      it('returns all existing metrics', async () => {
+        const olderTime = DateTime.now().minus({ hour: 2 }).toJSDate();
+        const midTime = DateTime.now().minus({ hour: 1 }).toJSDate();
+        const newerTime = DateTime.now().toJSDate();
+        await prisma.factorialMetric.create({ data: { name: 'midMetric', value: 1, createdAt: midTime } });
+        await prisma.factorialMetric.create({ data: { name: 'olderMetric', value: 2, createdAt: olderTime } });
+        await prisma.factorialMetric.create({ data: { name: 'newerMetric', value: 3, createdAt: newerTime } }); ;
 
         const result = await request.get('/metric');
 
-        expect(result.body.length).toEqual(2);
-        expect(result.body).toEqual(expect.arrayContaining([expect.objectContaining({ name: 'metric1', value: 1 }), expect.objectContaining({ name: 'metric2', value: 2 })]));
+        expect(result.body).toEqual([
+          expect.objectContaining({ name: 'midMetric', value: 1 }),
+          expect.objectContaining({ name: 'olderMetric', value: 2 }),
+          expect.objectContaining({ name: 'newerMetric', value: 3 })
+        ]);
+      });
+
+      it('returns all existing metrics ordered by timeline', async () => {
+        const olderTime = DateTime.now().minus({ hour: 2 }).toJSDate();
+        const midTime = DateTime.now().minus({ hour: 1 }).toJSDate();
+        const newerTime = DateTime.now().toJSDate();
+        await prisma.factorialMetric.create({ data: { name: 'midMetric', value: 1, createdAt: midTime } });
+        await prisma.factorialMetric.create({ data: { name: 'olderMetric', value: 2, createdAt: olderTime } });
+        await prisma.factorialMetric.create({ data: { name: 'newerMetric', value: 3, createdAt: newerTime } }); ;
+
+        const result = await request.get('/metric?sort=timeline');
+
+        expect(result.body).toEqual([
+          expect.objectContaining({ name: 'newerMetric', value: 3 }),
+          expect.objectContaining({ name: 'midMetric', value: 1 }),
+          expect.objectContaining({ name: 'olderMetric', value: 2 })
+        ]);
       });
     });
 
