@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  api:
+    build: ./metric-crud-app-backend/.
+    command: npm run dev
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./metric-crud-app-backend/.:/app
+    depends_on:
+      - postgresql
+    networks:
+      - common-network
+  frontend:
+    build: ./metric-crud-app-frontend/.
+    command: npm run dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./metric-crud-app-frontend/.:/app
+    depends_on:
+      - api
+    environment:
+      BACKEND_URL: http://api:8080
+    networks:
+      - common-network
+  postgresql:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: justauser
+      POSTGRES_PASSWORD: somerandompassword
+      POSTGRES_DB: dev_database
+    ports:
+      - '5432:5432'
+    networks:
+      - common-network
+
+networks:
+  common-network:

@@ -16,3 +16,17 @@ For more information check each project Readme file
 -  [Backend] (https://github.com/fernandofreije/metric-crud-app/tree/main/metric-crud-app-backend)
 
 -  [Frontend] (https://github.com/fernandofreije/metric-crud-app/tree/main/metric-crud-app-fronend)
+
+## How to run
+There are instructions for running each proyect separately in each readme (which is my prefered way to keep separate terminals),
+but for convinience you can run everything together with the docker-compose in the root of the repo (if you have docker)
+
+Prepare the database
+
+```bash
+docker-compose build && docker-compose run --rm api npx prisma migrate dev
+```
+Run the containers
+```bash
+docker-compose up
+```

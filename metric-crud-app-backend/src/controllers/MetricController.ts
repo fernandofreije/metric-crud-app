@@ -26,8 +26,7 @@ export class MetricController {
 
   public async getAll (req: Request, res: Response): Promise<Response<FactorialMetric[]>> {
     const { sort } = req.query;
-    console.log(sort);
-    console.log(req.query);
+
     const { data, error } = await new GetAllMetrics(this.metricRepository).perform({ sort: sort as SortType });
 
     if (error != null) {
