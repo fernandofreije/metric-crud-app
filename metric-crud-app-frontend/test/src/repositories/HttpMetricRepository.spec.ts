@@ -45,7 +45,7 @@ describe('HttpMetricRepository', () => {
   
         await subject.getAll();
   
-        expect(driver.get).toHaveBeenCalledWith(`/metric`);
+        expect(driver.get).toHaveBeenCalledWith(`/metric?sort=timeline`);
       });
   
       it('throws an exception if the driver fails to perform the operation', async () => {

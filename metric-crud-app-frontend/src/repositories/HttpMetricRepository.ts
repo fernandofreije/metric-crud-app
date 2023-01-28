@@ -9,7 +9,7 @@ export class HttpMetricRepository implements MetricRepository {
 
   public getAll: MetricRepository['getAll'] = async () => {
     try {
-      const metrics = await this.driver.get<Metric[]>(`/metric`);
+      const metrics = await this.driver.get<Metric[]>(`/metric?sort=timeline`);
 
       return metrics;
     } catch (e) {
