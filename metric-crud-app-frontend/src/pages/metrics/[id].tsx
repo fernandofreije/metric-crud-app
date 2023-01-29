@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next'
-import Layout from '../../components/Layout'
-import MetricDetailsCard from '../../components/MetricDetailsCard'
+import ButtonLink from '../../components/common/ButtonLink'
+import Layout from '../../components/common/Layout'
+import MetricDetailsCard from '../../components/metrics/MetricDetailsCard'
 import { Metric } from '../../models/Metric'
 import { BackendHttpDriver } from '../../repositories/drivers/BackendHttpDriver'
 import { HttpMetricRepository } from '../../repositories/HttpMetricRepository'
@@ -9,7 +10,8 @@ import { HttpMetricRepository } from '../../repositories/HttpMetricRepository'
 export default function MetricDetailsPage({ metric }: { metric: Metric }) {
 
   return (
-    <Layout>
+    <Layout navContent={<ButtonLink href={`/metrics/new`}> Create new metric </ButtonLink>}>
+      <h1 css={{ margin: '0 2rem' }}>Metric Details</h1>
       <MetricDetailsCard metric={metric}/>
     </Layout>
   )

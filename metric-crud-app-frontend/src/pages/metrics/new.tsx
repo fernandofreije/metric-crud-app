@@ -1,13 +1,11 @@
-import Head from 'next/head'
-import * as yup from 'yup';
 import { FormikHelpers, useFormik } from 'formik';
-import { useEffect, useState } from 'react';
-import { Metric } from '../../models/Metric';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { mutate } from 'swr';
-import Layout from '../../components/Layout';
-import { css } from '@emotion/react';
-import NewMetricForm from '../../components/NewMetricForm';
+import * as yup from 'yup';
+import Layout from '../../components/common/Layout';
+import NewMetricForm from '../../components/metrics/NewMetricForm';
+import { Metric } from '../../models/Metric';
 
 export default function NewMetricPage() {
 

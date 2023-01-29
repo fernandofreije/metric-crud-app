@@ -1,8 +1,7 @@
 import { css } from '@emotion/react';
-import { ReactNode } from 'react';
 
 
-export default function Info({ children }: { children: ReactNode }) {
+export default function Loading() {
 
     const containerStyles = css({
         display: 'flex',
@@ -12,7 +11,7 @@ export default function Info({ children }: { children: ReactNode }) {
 
     return (
         <div css={containerStyles}>
-            <p>{children}</p>
+            Loading....
         </div>
     )
 }

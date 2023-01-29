@@ -16,7 +16,11 @@ https://metric-crud-app-backend.onrender.com/
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/fernandofreije/metric-crud-app.git
+```
+or
+```bash
+git@github.com:fernandofreije/metric-crud-app.git
 ```
 
 Go to the project directory

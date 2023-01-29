@@ -7,14 +7,7 @@ export default connect().get(async (_: NextApiRequest, res: NextApiResponse) => 
     const driver = new BackendHttpDriver();
     const metricRepository = new HttpMetricRepository(driver);
 
-    const metrics = await metricRepository.getAll();
+    const metrics = await metricRepository.getAverages();
 
     return res.status(200).json({ data: metrics });
-  }).post(async (req: NextApiRequest, res: NextApiResponse) => {
-    const driver = new BackendHttpDriver();
-    const metricRepository = new HttpMetricRepository(driver);
-
-    await metricRepository.post(JSON.parse(req.body));
-
-    return res.status(200).end();
-  })
+  });

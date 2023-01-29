@@ -1,12 +1,11 @@
-import { Metric } from '../models/Metric'
-import { Colors } from '../util/colors';
 import { css } from '@emotion/react';
 import Moment from 'react-moment';
-import ButtonLink from './ButtonLink';
+import { Metric } from '../../models/Metric';
+import { Colors } from '../../util/colors';
 
-interface MetricCardProps { metric: Metric }
+interface MetricDetailsCardProps { metric: Metric }
 
-export default function MetricCard({ metric }: MetricCardProps) {
+export default function MetricDetailsCard({ metric }: MetricDetailsCardProps) {
 
   const { name, value, createdAt } = metric;
 
@@ -17,13 +16,14 @@ export default function MetricCard({ metric }: MetricCardProps) {
     borderRadius: 12,
     border: `1px solid ${Colors.borders}`,
     backgroundColor: Colors.cardBackground,
-    padding: '1.2rem',
+    padding: '1.2rem 1rem 3rem 1rem',
   })
 
   const cardContentStyles = css({
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    fontWeight: 'bold',
   })
 
   return (

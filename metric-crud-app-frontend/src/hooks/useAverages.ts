@@ -1,9 +1,10 @@
 import useSWR from 'swr';
-import { Metric } from '../models/Metric';
+import { MetricAverages } from '../models/MetricAverages';
 
-export const useMetrics = (): { data?: Metric[]; loading: boolean; error: unknown } => {
+export const useAverages = (): { data?: MetricAverages; loading: boolean; error: unknown } => {
+
   const { data, error } = useSWR(
-    `/api/metric`,
+    `/api/metric/averages`,
     async (path: string) => {
       const response = await fetch(path);
 

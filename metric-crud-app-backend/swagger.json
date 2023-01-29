@@ -48,6 +48,9 @@
                             }
                         }
                     },
+                    "201":{
+                        "description": "Successful operation"
+                    },
                     "422": {
                         "description": "Unprocessable Entity"
                     }

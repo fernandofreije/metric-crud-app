@@ -1,9 +1,7 @@
-import { Metric } from '../models/Metric'
-import { Colors } from '../util/colors';
-import styles from '../styles/MetricCard.module.css'
-import React, { HTMLAttributes, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import Link from 'next/link';
+import { ReactNode } from 'react';
+import { Colors } from '../../util/colors';
 
 interface ButtonLinkProps {
     href: string | URL;

@@ -1,9 +1,9 @@
-import { css, Global } from '@emotion/react';
+import { Global } from '@emotion/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Colors } from '../util/colors';
 
-import { Shrikhand, Montserrat } from '@next/font/google'
+import { Montserrat, Shrikhand } from '@next/font/google';
 import { mq } from '../util/mediaQuery';
 
 const shrikhand = Shrikhand({ subsets: ['latin'], weight: "400" })
@@ -22,8 +22,11 @@ const globalStyles = mq({
   'h1,h2,h3': {
     fontFamily: shrikhand.style.fontFamily
   },
+  h1: {
+    fontSize: ['1.5em', '2em']
+  },
   body: {
-    fontSize: [16, 24],
+    fontSize: [16, 18],
     fontFamily: montserrat.style.fontFamily,
     color: Colors.foreground,
     backgroundColor: Colors.background,

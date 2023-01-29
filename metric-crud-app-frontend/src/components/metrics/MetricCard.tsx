@@ -1,8 +1,8 @@
-import { Metric } from '../models/Metric'
-import { Colors } from '../util/colors';
+import { Metric } from '../../models/Metric'
+import { Colors } from '../../util/colors';
 import { css } from '@emotion/react';
 import Moment from 'react-moment';
-import ButtonLink from './ButtonLink';
+import ButtonLink from '../common/ButtonLink';
 
 interface MetricCardProps { metric: Metric }
 

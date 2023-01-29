@@ -21,7 +21,7 @@ export class MetricController {
       return res.status(error.code).send(error.message).end();
     }
 
-    return res.json(data).end();
+    return res.status(201).json(data).end();
   }
 
   public async getAll(req: Request, res: Response): Promise<Response<FactorialMetric[]>> {

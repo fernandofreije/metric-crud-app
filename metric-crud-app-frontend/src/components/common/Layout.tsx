@@ -1,13 +1,13 @@
-import { Metric } from '../models/Metric'
-import { Colors } from '../util/colors';
-import styles from '../styles/MetricCard.module.css'
-import React, { ReactNode } from 'react';
 import { css } from '@emotion/react';
+import { ReactNode } from 'react';
+import { Colors } from '../../util/colors';
 
 
 export default function Layout({ children, navContent }: { children: ReactNode, navContent?: ReactNode }) {
 
     const layoutStyles = css({
+        marginTop: '100px',
+        height: 'calc(100vh - 100px)',
         display: 'flex',
         flexDirection: 'column',
         padding: '2rem',
@@ -15,19 +15,24 @@ export default function Layout({ children, navContent }: { children: ReactNode, 
     })
 
     const navStyles = css({
-        position: 'sticky',
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        height: 100,
         display: 'flex',
-        justifyContent: 'end',
         padding: '1rem',
         overflow: 'hidden',
-        height: 80,
         backgroundColor: Colors.navBackground,
     })
 
 
     return (
         <>
-            {!!navContent && <nav css={navStyles}>{navContent}</nav>}
+            <nav css={navStyles}>
+                <h1 css={{flex: 1}}>Metric Crud App Example</h1> 
+                {!!navContent && navContent}
+
+            </nav>
             <main css={layoutStyles}>
                 {children}
             </main>

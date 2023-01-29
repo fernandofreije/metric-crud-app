@@ -1,8 +1,6 @@
-import { Metric } from '../models/Metric'
-import { Colors } from '../util/colors';
-import React, { HTMLAttributes, ReactNode } from 'react';
 import { css } from '@emotion/react';
-import Link from 'next/link';
+import React from 'react';
+import { Colors } from '../../util/colors';
 
 
 type ButtonProps = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;

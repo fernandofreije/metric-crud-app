@@ -1,8 +1,5 @@
-import { Metric } from '../models/Metric'
-import { Colors } from '../util/colors';
 import { css } from '@emotion/react';
-import Moment from 'react-moment';
-import ButtonLink from './ButtonLink';
+import { Colors } from '../../util/colors';
 
 interface AverageBoxProps { text: string, value: number, total: number }
 
@@ -28,8 +25,8 @@ export default function AverageBox({ text, value, total }: AverageBoxProps) {
         <div css={CardContainerStyles}>
             <h1 css={cardContentStyles}>{text}</h1>
             <div css={{display: 'flex', gap: '5rem'}}>
-                <label> Average  <p css={{ fontSize: 36, ...cardContentStyles }}>{value}</p></label>
-                <label> Total  <p css={{ fontSize: 36, ...cardContentStyles }}>{total}</p></label>
+                <label> Average  <p css={{ fontSize: 36, ...cardContentStyles }}>{Math.round(value * 100) / 100}</p></label>
+                <label> Total  <p css={{ fontSize: 36, ...cardContentStyles }}>{Math.round(total * 100) / 100}</p></label>
             </div>
         </div>
     )

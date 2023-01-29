@@ -1,11 +1,10 @@
 import { css } from '@emotion/react'
 import { ChangeEvent } from 'react'
-import { Colors } from '../util/colors'
-import Button from './Button'
+import { Colors } from '../../util/colors'
+import Button from '../common/Button'
 
 
 interface NewMetricFormProps { onSubmit: () => void, values: Record<string, any>, handleChange: (e: ChangeEvent<any>) => void, isSubmitting: boolean }
-
 
 const newMetricFormStyles = css({
     display: 'grid',
@@ -34,7 +33,7 @@ export default function NewMetricForm({ onSubmit, values, handleChange, isSubmit
         <form css={newMetricFormStyles} onSubmit={onSubmit}>
             <label css={labelStyles} htmlFor="name">Name <input css={inputStyles} type="text" id="name" name="name" value={values.name} onChange={handleChange} placeholder="Some name for your metric" /></label>
 
-            <label css={labelStyles} htmlFor="name">Value <input css={inputStyles} type="number" id="value" name="value" value={values.value} onChange={handleChange} placeholder="200" /></label>
+            <label css={labelStyles} htmlFor="value">Value <input css={inputStyles} type="number" id="value" name="value" value={values.value} onChange={handleChange} placeholder="200" /></label>
 
             {isSubmitting ? <p>Submitting....</p> : <Button type="submit">Create</Button>}
         </form>
