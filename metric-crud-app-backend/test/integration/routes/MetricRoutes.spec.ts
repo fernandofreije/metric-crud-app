@@ -32,7 +32,7 @@ describe('MetricRoutes', () => {
       });
 
       it('returns 200 and the created metric', async () => {
-        const result = await request.post('/metric').send({ name: 'somename', value: 1 }).expect(200);
+        const result = await request.post('/metric').send({ name: 'somename', value: 1 }).expect(201);
 
         expect(result.body).toEqual(expect.objectContaining({ name: 'somename', value: 1 }));
       });
