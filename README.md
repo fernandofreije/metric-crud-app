@@ -13,6 +13,9 @@ This is a the monorepo containing the Metric CRUD app challenge
 
 For more information check each project Readme file
 
+> Backend deployment and loading is quite slow and gets to sleep every few minutes (it's free so that's what we get)
+> Please be patient on first load!
+
 -  [Backend] (https://github.com/fernandofreije/metric-crud-app/tree/main/metric-crud-app-backend)
     Url: https://metric-crud-app-frontend.vercel.app
 
