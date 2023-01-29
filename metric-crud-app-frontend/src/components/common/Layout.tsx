@@ -16,10 +16,11 @@ export default function Layout({ children, navContent }: { children: ReactNode, 
 
     const navStyles = css({
         position: 'fixed',
+        display: 'flex',
+        alignItems: 'center',
         top: 0,
         width: '100%',
         height: 100,
-        display: 'flex',
         padding: '1rem',
         overflow: 'hidden',
         backgroundColor: Colors.navBackground,
