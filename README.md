@@ -14,8 +14,10 @@ This is a the monorepo containing the Metric CRUD app challenge
 For more information check each project Readme file
 
 -  [Backend] (https://github.com/fernandofreije/metric-crud-app/tree/main/metric-crud-app-backend)
+    Url: https://metric-crud-app-frontend.vercel.app
 
 -  [Frontend] (https://github.com/fernandofreije/metric-crud-app/tree/main/metric-crud-app-fronend)
+    Url: https://metric-crud-app-backend.onrender.com
 
 ## How to run
 There are instructions for running each proyect separately in each readme (which is my prefered way to keep separate terminals),
