@@ -27,14 +27,9 @@ export default function NewMetricPage() {
 
 
   const onSubmit = async (newMetricData: Pick<Metric, 'name' | 'value'>, resetForm: () => void) => {
-    console.log('aquii')
     const response = await fetch('/api/metric', { method: 'POST', body: JSON.stringify(newMetricData) });
-
-    console.log(response)
-
     if (!response.ok) {
       if (response.status === 400) {
-        console.log('aqui')
         const apiError = await response.json();
         return setError(apiError);
       } else {
@@ -54,12 +49,10 @@ export default function NewMetricPage() {
     },
     onSubmit: async (values: Pick<Metric, 'name' | 'value'>, { setSubmitting, resetForm }: FormikHelpers<Pick<Metric, 'name' | 'value'>>) => {
       setSubmitting(true);
-      console.log('fuera')
       await onSubmit(values, resetForm);
-      console.log('fuera despues')
       setSubmitting(false);
       mutate('/api/metric')
-      //router.push('/metrics')
+      router.push('/metrics')
     },
     validationSchema,
     enableReinitialize: true,

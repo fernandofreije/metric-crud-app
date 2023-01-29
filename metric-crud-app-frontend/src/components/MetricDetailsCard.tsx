@@ -30,10 +30,7 @@ export default function MetricCard({ metric }: MetricCardProps) {
     <div css={CardContainerStyles}>
       <div css={{ display: 'flex', justifyContent: 'end' }}><Moment css={{ display: 'inline-grid' }} fromNow>{createdAt}</Moment></div>
       <h1 css={cardContentStyles}>{name}</h1>
-      <p css={cardContentStyles}>Value: {value}</p>
-      <div css={{ display: 'flex', justifyContent: 'end' }}>
-        <ButtonLink href={`/metrics/${metric.id}`}>See details</ButtonLink>
-      </div>
+      <p css={{cardContentStyles }}>Value: {value}</p>
     </div>
   )
 }

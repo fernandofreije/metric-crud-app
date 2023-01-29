@@ -27,8 +27,10 @@ export default function AverageBox({ text, value, total }: AverageBoxProps) {
     return (
         <div css={CardContainerStyles}>
             <h1 css={cardContentStyles}>{text}</h1>
-            <label> Average  <p css={{ fontSize: 36, ...cardContentStyles }}>{value}</p></label>
-            <label> Total  <p css={{ fontSize: 36, ...cardContentStyles }}>{total}</p></label>
+            <div css={{display: 'flex', gap: '5rem'}}>
+                <label> Average  <p css={{ fontSize: 36, ...cardContentStyles }}>{value}</p></label>
+                <label> Total  <p css={{ fontSize: 36, ...cardContentStyles }}>{total}</p></label>
+            </div>
         </div>
     )
 }

@@ -23,7 +23,7 @@ const globalStyles = mq({
     fontFamily: shrikhand.style.fontFamily
   },
   body: {
-    fontSize: 20,
+    fontSize: [16, 24],
     fontFamily: montserrat.style.fontFamily,
     color: Colors.foreground,
     backgroundColor: Colors.background,
@@ -37,6 +37,9 @@ const globalStyles = mq({
     fontFamily: shrikhand.style.fontFamily,
     color: 'inherit',
     cursor: 'pointer',
+  },
+  label:{
+    fontWeight: 'bold',
   }
 })
 
