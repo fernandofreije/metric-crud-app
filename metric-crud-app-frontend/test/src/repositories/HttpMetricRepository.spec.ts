@@ -119,7 +119,7 @@ describe('HttpMetricRepository', () => {
         const subject = new HttpMetricRepository(driver, new NoLogger());
   
         await expect(subject.getAverages()).rejects.toThrowError(
-          /There was an error trying to the averages/i,
+          /There was an error trying to get the averages/i,
         );
       });
   
