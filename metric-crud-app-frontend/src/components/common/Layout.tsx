@@ -29,7 +29,7 @@ export default function Layout({ children, navContent }: { children: ReactNode, 
     return (
         <>
             <nav css={navStyles}>
-                <h1 css={{flex: 1}}>Metric Crud App Example</h1> 
+                <h1 css={{flex: 1}}>Metric Crud App</h1> 
                 {!!navContent && navContent}
 
             </nav>

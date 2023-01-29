@@ -19,14 +19,14 @@ describe('Layout', () => {
     it('shows content of the title of the navbar if nothing was if passed', async () => {  
       const { findByText } = render(<Layout>layout content</Layout>);
   
-      expect(await findByText(/metric crud app example/i)).toBeInTheDocument();
+      expect(await findByText(/metric crud app/i)).toBeInTheDocument();
 
     });
 
     it('shows content of the title of the navbar if something was if passed', async () => {  
       const { findByText } = render(<Layout navContent="navbar content">layout content</Layout>);
   
-      expect(await findByText(/metric crud app example/i)).toBeInTheDocument();
+      expect(await findByText(/metric crud app/i)).toBeInTheDocument();
 
     });
   });

@@ -16,7 +16,7 @@ const metricCardListStyles = mq({
     overflowY: 'auto',
     width: '100%',
     height: 'inherit',
-    padding: '2rem',
+    padding: ['2rem 0','2rem'],
 })
 
 export default function MetricCardList({ metrics, loading, error }: MetricCardProps) {

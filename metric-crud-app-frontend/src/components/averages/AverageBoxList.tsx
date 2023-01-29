@@ -1,18 +1,18 @@
-import { css } from '@emotion/react';
 import { MetricAverages } from '../../models/MetricAverages';
+import { mq } from '../../util/mediaQuery';
 import ErrorComponent from '../common/Error';
 import AverageBox from './AverageBox';
 import AverageBoxEmpty from './AverageBoxEmpty';
 
 interface MetricCardProps { averages?: MetricAverages, loading:boolean; error: unknown }
 
-const metricCardListStyles = css({
+const metricCardListStyles = mq({
     display: 'flex',
     flexDirection: 'column',
     gap: '1.2rem',
     maxHeight: '85vh',
     overflowY: 'auto',
-    padding: '2rem',
+    padding: ['2rem 0','2rem'],
 })
 
 

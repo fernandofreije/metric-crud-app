@@ -61,7 +61,7 @@ describe('/metrics page', () => {
             render(<MetricListPage />);
           });
     
-        expect(await screen.findByText(/metric crud app example/i)).toBeInTheDocument();
+        expect(await screen.findByText(/metric crud app/i)).toBeInTheDocument();
         expect(await screen.findByText(/create new metric/i)).toBeInTheDocument()  
       });
   });
